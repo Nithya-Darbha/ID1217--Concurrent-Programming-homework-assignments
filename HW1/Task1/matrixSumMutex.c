@@ -1,4 +1,5 @@
-/* matrix summation using pthreads
+/* task b
+matrix summation using pthreads
 
    features: doesn't use a barrier; 
 
