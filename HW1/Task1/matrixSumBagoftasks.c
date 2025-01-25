@@ -1,4 +1,5 @@
-/* matrix summation using pthreads
+/* task c
+matrix summation using pthreads
 
    features: bag of tasks implementation 
 
