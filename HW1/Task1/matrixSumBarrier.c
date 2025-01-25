@@ -1,4 +1,5 @@
-/* matrix summation using pthreads
+/* task a
+matrix summation using pthreads
 
    features: uses a barrier; the Worker[0] computes
              the total sum from partial sums computed by Workers
