@@ -44,6 +44,7 @@ double function(double x){
     return sqrt(1-(x*x));
 }
 
+/*recursive adaptive quadrature parallel procedure- slide 55*/
 double quadrature(double l,double r,double fl,double fr,double area){
     double m = (l+r)/2.0;
     double fm= function(m);
