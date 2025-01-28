@@ -3,7 +3,8 @@
 
    usage under Linux:
      gcc piComputation.c -lm -lpthread 
-     a.out numWorkers epsilion
+     a.out numWorkers epsilon
+     enter the epsilon value as an int (if 3 corresponds to error of 0.001)
 
 */
 
@@ -16,9 +17,9 @@
 #include <sys/time.h>
 
 #define MAXTHREADS 10
-#define ERRORBOUND 0.1e-4
+#define ERRORBOUND 0.1e-24
 
-double pi=0.0 , epsilion;
+double pi=0.0 , epsilon;
 long numWorkers ;
 double splitpoint;
 double start_time, end_time;
@@ -44,14 +45,13 @@ double function(double x){
     return sqrt(1-(x*x));
 }
 
-/*recursive adaptive quadrature parallel procedure- slide 55*/
 double quadrature(double l,double r,double fl,double fr,double area){
     double m = (l+r)/2.0;
     double fm= function(m);
     double larea = ((fl+fm)*(m-l))/2.0;
     double rarea = ((fm+fr)*(r-m))/2.0;
 
-    if(fabs((larea +rarea)-area)>epsilion){
+    if(fabs((larea +rarea)-area)>epsilon){
         larea= quadrature(l,m,fl,fm,larea);
         rarea= quadrature(m,r,fm,fr,rarea);
     }
@@ -80,14 +80,15 @@ int main(int argc , char* argv[]){
 
     numWorkers = (argc > 1)? atoi(argv[1]) : MAXTHREADS;
     if(argc>2){
-        epsilion = atof(argv[2]);
+        int integerforerror = atoi(argv[2]);
+        epsilon = pow(10, -integerforerror); //error margin 
     }
     else{
-        epsilion= ERRORBOUND;
+        epsilon= ERRORBOUND;
     }
 
     /*eror margin based on number of threads*/
-    //epsilion= epsilion*numWorkers;
+    //epsilon= epsilon*numWorkers;
     splitpoint=1.0/numWorkers;
 
     pthread_t workerid[numWorkers];
@@ -106,7 +107,7 @@ int main(int argc , char* argv[]){
     pthread_mutex_destroy(&areaBarrier);
 
     printf("Pi value= %.10lf\n", pi);
-    printf("Error margin= %.10lf\n", epsilion);
+    printf("Error margin= %.10lf\n", epsilon);
     printf("The execution time is %g sec\n", end_time - start_time);
 
     return 0;  
