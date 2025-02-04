@@ -64,9 +64,9 @@ int main(int argc, char *argv[]){
         quickSortMethod(arr,0,capacity-1);
     }
     end_time=omp_get_wtime();
-    printf("Array size %d \n", capacity);
-    printf("Number of threads %d \n", threads);
-    printf("The execution time %f sec \n", end_time-start_time);
+    printf("array size %d \n", capacity);
+    printf("number of threads %d \n", threads);
+    printf("execution time %f sec \n", end_time-start_time);
     free(arr);
     return 0 ;
 }
