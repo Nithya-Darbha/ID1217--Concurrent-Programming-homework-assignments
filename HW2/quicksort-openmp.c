@@ -36,7 +36,7 @@ int quickSortMethod(int arr[] , int lo, int hi){
 
 int main(int argc, char *argv[]){
     if(argc !=3){
-        printf("Array size and number of threads: %s <arr_size> <numOfthreads>\n",argv[0]);
+        printf("array size and number of threads: %s <arr_size> <numOfthreads>\n",argv[0]);
         return 1;
     }
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
     /*allocation of array*/
     int *arr = (int*)malloc(capacity * sizeof(int));
     if(arr==NULL){
-        printf("Memory alloctaion failed");
+        printf("mem alloctaion failed");
         return 1;
     }
 
