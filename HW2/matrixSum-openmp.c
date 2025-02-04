@@ -92,8 +92,8 @@ int main(int argc, char *argv[]) {
 
   printf("the total is %d\n", total);
   printf("it took %g seconds\n", end_time - start_time);
-  printf("Thr min value is %d and the position is (%d, %d)" , min, minx,miny);
-  printf("Thr max value is %d and the position is (%d, %d)" , max, maxx, maxy);
+  printf("the min value is %d and the position is (%d, %d)" , min, minx,miny);
+  printf("the max value is %d and the position is (%d, %d)" , max, maxx, maxy);
 
 }
 
